@@ -2,12 +2,14 @@
     "-NjjQ_tkNP6CwQ_xQ9ZB": {
         "firebaseKey": "-NjjQ_tkNP6CwQ_xQ9ZB",
         "creatorID": "dtxHqsGQVaYqSRf1Fkx0jBcdKte2",
+        "name": "Milly's 4th Birthday Party",
         "date": "11/23/2022",
         "events": []
     },
     "-NjjQ_tkNP6CwQ_xQ9ZC": {
         "firebaseKey": "-NjjQ_tkNP6CwQ_xQ9ZC",
         "creatorID": "dtxHqsGQVaYqSRf1Fkx0jBcdKte2",
+        "name": "Gwen's 2nd Birthday Party",
         "date": "5/1/2023",
         "events": [
             {},
@@ -17,6 +19,7 @@
     "-NjjQ_tlv94wIcbtRWLa": {
         "firebaseKey":"-NjjQ_tlv94wIcbtRWLa",
         "creatorID": "kh1DKi1WofMFZeGzcjFJaM1gJhO2",
+        "name": "Mason's 8th Birthday Party",
         "date": "11/14/2023",
         "events": [
             {}
@@ -25,6 +28,7 @@
     "-NjjQ_tmy0i6c7qg2bSo": {
         "firebaseKey": "-NjjQ_tmy0i6c7qg2bSo",
         "creatorID": "kh1DKi1WofMFZeGzcjFJaM1gJhO2",
+        "name": "Braxton's 4th Birthday Party",
         "date": "7/20/2023",
         "events": [
             {},
@@ -37,6 +41,7 @@
     "-NjjQ_tn9yWkcyBfaX5q": {
         "firebaseKey": "-NjjQ_tn9yWkcyBfaX5q",
         "creatorID": "kh1DKi1WofMFZeGzcjFJaM1gJhO2",
+        "name": "Gary's Birthday Party",
         "date": "11/28/2022",
         "events": [
             {}
@@ -45,6 +50,7 @@
     "-NjjQ_tojhEV9CCKEHAT": {
         "firebaseKey": "-NjjQ_tojhEV9CCKEHAT",
         "creatorID": "Martino",
+        "name": "Harry's Birthday Party",
         "date": "3/27/2023",
         "events": [
             {}
@@ -53,6 +59,7 @@
     "-NjjQ_tpZIAIejrb17oC": {
         "firebaseKey": "-NjjQ_tpZIAIejrb17oC",
         "creatorID": "Ulrika",
+        "name": "Erika's Birthday Party",
         "date": "9/15/2023",
         "events": [
             {}
@@ -61,12 +68,14 @@
     "-NjjQ_tqzJNhyeD44zom": {
         "firebaseKey": "-NjjQ_tqzJNhyeD44zom",
         "creatorID": "Perren",
+        "name": "Steve's Birthday Party",
         "date": "3/13/2023",
         "events": []
     },
     "-NjjQ_trbYBgTQ67n0Hd": {
         "firebaseKey": "-NjjQ_trbYBgTQ67n0Hd",
         "creatorID": "Kikelia",
+        "name": "Al's Birthday Party",
         "date": "11/2/2023",
         "events": [
             {},
@@ -77,6 +86,7 @@
     "-NjjQ_tswEJe5PHNVvyv": {
         "firebaseKey": "-NjjQ_tswEJe5PHNVvyv",
         "creatorID": "Joelie",
+        "name": "Chris's Birthday Party",
         "date": "3/26/2023",
         "events": []
     }
