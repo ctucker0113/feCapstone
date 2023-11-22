@@ -14,7 +14,7 @@ function ShowParties() {
 
   useEffect(() => {
     getAllParties();
-  }, []);
+  });
 
   return (
     <div className="text-center my-4">

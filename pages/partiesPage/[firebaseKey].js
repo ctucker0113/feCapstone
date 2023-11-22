@@ -16,7 +16,7 @@ export default function ViewParties() {
 
   useEffect(() => {
     getPartyDetails();
-  }, [firebaseKey]);
+  });
 
   return (
     <div>{partyDetails.map((party) => (
