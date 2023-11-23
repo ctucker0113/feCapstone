@@ -3,7 +3,7 @@ import { clientCredentials } from '../utils/client';
 const endpoint = clientCredentials.databaseURL;
 
 const getUserParties = (uid) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/Parties.json?orderBy="uid"&equalTo="${uid}"`, {
+  fetch(`${endpoint}/Parties.json?orderBy="creatorID"&equalTo="${uid}"`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',

@@ -7,6 +7,7 @@ function ShowParties() {
   const [parties, setParties] = useState([]);
 
   const { user } = useAuth();
+  console.warn(`User info: ${user}`);
 
   const getAllParties = () => {
     getUserParties(user.uid).then(setParties);
