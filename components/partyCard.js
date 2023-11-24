@@ -9,7 +9,7 @@ import deleteParty from '../api/PartyData';
 // This function creates the template for each Party card and sends it out to the rest of the program.
 function PartyCard({ partyObj, onUpdate }) {
   const deleteThisParty = () => {
-    if (window.confirm(`Delete ${partyObj.name}?`)) {
+    if (window.confirm(`Delete ${partyObj.party_title}?`)) {
       deleteParty(partyObj.firebaseKey).then(() => onUpdate());
     }
   };
@@ -18,8 +18,10 @@ function PartyCard({ partyObj, onUpdate }) {
     <Card style={{ width: '18rem', margin: '10px' }}>
       <Card.Img variant="top" style={{ height: '400px' }} />
       <Card.Body>
-        <Card.Title>{partyObj.name}</Card.Title>
+        <Card.Title>{partyObj.party_title}</Card.Title>
         <p className="card-text bold"><span>{partyObj.date} <br /></span></p>
+        <p className="card-text bold"><span>{partyObj.time} <br /></span></p>
+        <p className="card-text bold"><span>{partyObj.location} <br /></span></p>
         {/* // TO-DO: Create View Party Page Form and pass the routing info below  */}
         <Link href="/" passHref>
           <Button variant="info">View</Button>
@@ -38,8 +40,10 @@ function PartyCard({ partyObj, onUpdate }) {
 
 PartyCard.propTypes = {
   partyObj: PropTypes.shape({
-    name: PropTypes.string,
+    party_title: PropTypes.string,
     date: PropTypes.string,
+    time: PropTypes.string,
+    location: PropTypes.string,
     firebaseKey: PropTypes.string,
   }).isRequired,
   onUpdate: PropTypes.func.isRequired,
