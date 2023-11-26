@@ -15,7 +15,8 @@ const initialState = {
   uid: '',
 };
 
-function PartyForm({ obj }) {
+function PartyForm({ partyObj }) {
+  console.warn(`The contents of partyObj are: ${partyObj}`);
   const [formInput, setFormInput] = useState(initialState);
 
   const router = useRouter();
@@ -25,8 +26,8 @@ function PartyForm({ obj }) {
   useEffect(() => {
     // If the object already exists (i.e. - has a FB key), then fill the form with the values from the object.
     // Else, leave the values in the form blank.
-    if (obj.firebaseKey) setFormInput(obj);
-  }, [obj, user]);
+    if (partyObj.firebaseKey) setFormInput(partyObj);
+  }, [partyObj, user]);
 
   const handleChange = (e) => {
     // Overall point of this function is to allow the user to type inside the form and to have that data stored with each keystroke.
@@ -44,9 +45,9 @@ function PartyForm({ obj }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     // If the item already exists in the database...
-    if (obj.firebaseKey) {
+    if (partyObj.firebaseKey) {
       // Make the Update API call and then route the user to the Parties page.
-      updateParty(formInput).then(() => router.push('/Parties'));
+      updateParty(formInput).then(() => router.push('/parties/myParties'));
       // Else start running the Create Party function
     } else {
       const payload = { ...formInput, creatorID: user.uid };
@@ -61,7 +62,7 @@ function PartyForm({ obj }) {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <h2 className="text-white mt-5">{obj.firebaseKey ? 'Update' : 'Create'} Party</h2>
+      <h2 className="text-white mt-5">{partyObj.firebaseKey ? 'Update' : 'Create'} Party</h2>
 
       {/* PARTY TITLE INPUT  */}
       <FloatingLabel controlId="floatingInput1" label="Party Title" className="mb-3">
@@ -112,13 +113,13 @@ function PartyForm({ obj }) {
       </FloatingLabel>
 
       {/* SUBMIT BUTTON  */}
-      <Button type="submit">{obj.firebaseKey ? 'Update' : 'Create'} Party </Button>
+      <Button type="submit">{partyObj.firebaseKey ? 'Update' : 'Create'} Party </Button>
     </Form>
   );
 }
 
 PartyForm.propTypes = {
-  obj: PropTypes.shape({
+  partyObj: PropTypes.shape({
     party_title: PropTypes.string,
     date: PropTypes.string,
     time: PropTypes.string,
@@ -129,7 +130,7 @@ PartyForm.propTypes = {
 };
 
 PartyForm.defaultProps = {
-  obj: initialState,
+  partyObj: initialState,
 };
 
 export default PartyForm;

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Nav } from 'react-bootstrap';
-import { useAuth } from '../utils/context/authContext';
-import PartyCard from '../components/partyCard';
-import { getUserParties } from '../api/PartyData';
+import { useAuth } from '../../utils/context/authContext';
+import PartyCard from '../../components/partyCard';
+import { getUserParties } from '../../api/PartyData';
 
 function ShowParties() {
   const [parties, setParties] = useState([]);
@@ -21,7 +21,7 @@ function ShowParties() {
   return (
     <div className="text-center my-4">
       <button type="button" className="btn btn-light">
-        <Link passHref href="/newParty">
+        <Link passHref href="/parties/newParty">
           <Nav.Link>Create a New Party</Nav.Link>
         </Link>
       </button>

@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Link from 'next/link';
-import deleteParty from '../api/PartyData';
+import { deleteParty } from '../api/PartyData';
+
 // TO-DO: Write and Import UpdateParty
 
 // This function creates the template for each Party card and sends it out to the rest of the program.
@@ -27,7 +28,7 @@ function PartyCard({ partyObj, onUpdate }) {
           <Button variant="info">View</Button>
         </Link>
         {/* TO-DO: Create Edit Party Page Form and pass the routing info below */}
-        <Link href="/" passHref>
+        <Link href={`/parties/edit/${partyObj.firebaseKey}`} passHref>
           <Button variant="info">Edit</Button>
         </Link>
         <Button variant="danger" onClick={deleteThisParty} className="m-2">
