@@ -23,6 +23,9 @@ export default function NavBarAuth() {
             <Link passHref href="/parties/myParties">
               <Nav.Link>Parties</Nav.Link>
             </Link>
+            <Link passHref href="/events/viewAllEvents">
+              <Nav.Link>Events</Nav.Link>
+            </Link>
             <Button variant="danger" onClick={signOut}>Sign Out</Button>
           </Nav>
         </Navbar.Collapse>

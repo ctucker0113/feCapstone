@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Nav } from 'react-bootstrap';
 import { useAuth } from '../../utils/context/authContext';
-import PartyCard from '../../components/partyCard';
-import { getUserParties } from '../../api/PartyData';
+import PartyCard from '../../components/partyComponents/partyCard';
+import { getUserParties } from '../../api/PartyAPICalls';
 
 function ShowParties() {
   const [parties, setParties] = useState([]);
