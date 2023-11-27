@@ -4,19 +4,19 @@ import PropTypes from 'prop-types';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 import { Button } from 'react-bootstrap';
-import { useAuth } from '../utils/context/authContext';
-import { createParty, updateParty } from '../api/PartyData';
+import { useAuth } from '../../utils/context/authContext';
+import { updateEvent, createEvent } from '../../api/EventAPICalls';
 
 const initialState = {
-  party_title: '',
-  date: '',
-  time: '',
-  location: '',
+  name: '',
+  eventType: '',
+  image: '',
+  description: '',
   uid: '',
 };
 
-function PartyForm({ partyObj }) {
-  console.warn(`The contents of partyObj are: ${partyObj}`);
+function EventForm({ eventObj }) {
+  console.warn(`The value of eventObj is: ${eventObj}`);
   const [formInput, setFormInput] = useState(initialState);
 
   const router = useRouter();
@@ -26,8 +26,8 @@ function PartyForm({ partyObj }) {
   useEffect(() => {
     // If the object already exists (i.e. - has a FB key), then fill the form with the values from the object.
     // Else, leave the values in the form blank.
-    if (partyObj.firebaseKey) setFormInput(partyObj);
-  }, [partyObj, user]);
+    if (eventObj.firebaseKey) setFormInput(eventObj);
+  }, [eventObj, user]);
 
   const handleChange = (e) => {
     // Overall point of this function is to allow the user to type inside the form and to have that data stored with each keystroke.
@@ -45,16 +45,16 @@ function PartyForm({ partyObj }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     // If the item already exists in the database...
-    if (partyObj.firebaseKey) {
-      // Make the Update API call and then route the user to the Parties page.
-      updateParty(formInput).then(() => router.push('/parties/myParties'));
-      // Else start running the Create Party function
+    if (eventObj.firebaseKey) {
+      // Make the Update API call and then route the user to the Events page.
+      updateEvent(formInput).then(() => router.push('/events/viewAllEvents'));
+      // Else start running the Create Event function
     } else {
       const payload = { ...formInput, creatorID: user.uid };
-      createParty(payload).then(({ name }) => {
+      createEvent(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
-        updateParty(patchPayload).then(() => {
-          router.push('/parties');
+        updateEvent(patchPayload).then(() => {
+          router.push('/events/viewAllEvents');
         });
       });
     }
@@ -62,75 +62,75 @@ function PartyForm({ partyObj }) {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <h2 className="text-white mt-5">{partyObj.firebaseKey ? 'Update' : 'Create'} Party</h2>
+      <h2 className="text-white mt-5">{eventObj.firebaseKey ? 'Update' : 'Create'} Event</h2>
 
-      {/* PARTY TITLE INPUT  */}
-      <FloatingLabel controlId="floatingInput1" label="Party Title" className="mb-3">
+      {/* EVENT NAME INPUT  */}
+      <FloatingLabel controlId="floatingInput1" label="Event Name" className="mb-3">
         <Form.Control
           type="text"
-          placeholder="Party Title"
-          name="party_title"
-          value={formInput.party_title}
+          placeholder="Event Name"
+          name="name"
+          value={formInput.name}
           onChange={handleChange}
           required
         />
       </FloatingLabel>
 
-      {/* DATE INPUT  */}
-      <FloatingLabel controlId="floatingInput2" label="Date" className="mb-3">
+      {/* EVENT TYPE INPUT  */}
+      <FloatingLabel controlId="floatingInput2" label="Event Type" className="mb-3">
         <Form.Control
           type="text"
-          placeholder="Date"
-          name="date"
-          value={formInput.date}
+          placeholder="Event Type"
+          name="eventType"
+          value={formInput.eventType}
           onChange={handleChange}
           required
         />
       </FloatingLabel>
 
-      {/* TIME INPUT  */}
-      <FloatingLabel controlId="floatingInput3" label="Time" className="mb-3">
+      {/* EVENT IMAGE INPUT  */}
+      <FloatingLabel controlId="floatingInput3" label="Image" className="mb-3">
         <Form.Control
-          type="text"
-          placeholder="Time"
-          name="time"
-          value={formInput.time}
+          type="url"
+          placeholder="Enter an image url"
+          name="image"
+          value={formInput.image}
           onChange={handleChange}
           required
         />
       </FloatingLabel>
 
-      {/* LOCATION INPUT  */}
-      <FloatingLabel controlId="floatingInput4" label="Location" className="mb-3">
+      {/* EVENT DESCRIPTION INPUT  */}
+      <FloatingLabel controlId="floatingInput4" label="Description" className="mb-3">
         <Form.Control
           type="text"
-          placeholder="Location"
-          name="location"
-          value={formInput.location}
+          placeholder="Description"
+          name="description"
+          value={formInput.description}
           onChange={handleChange}
           required
         />
       </FloatingLabel>
 
       {/* SUBMIT BUTTON  */}
-      <Button type="submit">{partyObj.firebaseKey ? 'Update' : 'Create'} Party </Button>
+      <Button type="submit">{eventObj.firebaseKey ? 'Update' : 'Create'} Event </Button>
     </Form>
   );
 }
 
-PartyForm.propTypes = {
-  partyObj: PropTypes.shape({
-    party_title: PropTypes.string,
-    date: PropTypes.string,
-    time: PropTypes.string,
-    location: PropTypes.string,
+EventForm.propTypes = {
+  eventObj: PropTypes.shape({
+    name: PropTypes.string,
+    eventType: PropTypes.string,
+    image: PropTypes.string,
+    description: PropTypes.string,
     creatorID: PropTypes.string,
     firebaseKey: PropTypes.string,
   }),
 };
 
-PartyForm.defaultProps = {
-  partyObj: initialState,
+EventForm.defaultProps = {
+  eventObj: initialState,
 };
 
-export default PartyForm;
+export default EventForm;

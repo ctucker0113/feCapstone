@@ -68,47 +68,10 @@ const updateParty = (payload) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const getAllEvents = () => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/Events.json`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      if (data) {
-        resolve(Object.values(data));
-      } else {
-        resolve([]);
-      }
-    })
-    .catch(reject);
-});
-
-const deleteEvent = (firebaseKey) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/Events/${firebaseKey}.json`, {
-    method: 'DELETE',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  }).then((response) => response.json())
-    .then((data) => resolve((data)))
-    .catch(reject);
-});
-
-// TODO: API calls for Events
-
-// const getEvent(eventType)
-
-// const createEvent(eventType)
-
 export {
   getUserParties,
   getSingleParty,
   deleteParty,
   createParty,
   updateParty,
-  getAllEvents,
-  deleteEvent,
 };
