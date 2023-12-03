@@ -1,29 +1,37 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { getSingleParty } from '../../api/PartyAPICalls';
-import PartyCard from '../../components/partyComponents/partyCard';
+import { getPartyEvents } from '../../api/EventAPICalls';
+import EventCard from '../../components/eventComponents/eventCard';
 
-export default function ViewParty() {
-  const [partyDetails, setPartyDetails] = useState({});
-
+export default function ViewPartyEvents() {
+  const [partyEvents, setPartyEvents] = useState([]);
   const router = useRouter();
 
   const { firebaseKey } = router.query;
 
-  const getPartyDetails = () => {
-    getSingleParty(firebaseKey).then((party) => {
-      setPartyDetails(party);
+  const getThisPartyEvents = (partyID) => {
+    getPartyEvents(partyID).then((events) => {
+      console.warn('Received party events:', events);
+      // Make sure events is an array before setting it
+      if (Array.isArray(events)) {
+        setPartyEvents(events);
+      } else {
+        console.error('Received events is not an array:', events);
+      }
     });
   };
 
   useEffect(() => {
-    getPartyDetails();
-  }, [firebaseKey]);
+    getThisPartyEvents(firebaseKey);
+  }, [firebaseKey]); 
 
   return (
     <div>
-      <PartyCard key={partyDetails.firebaseKey} partyObj={partyDetails} onUpdate={getPartyDetails} />
-      <button type="button" className="btn btn-success">Add Events</button>
+      <div className="d-flex flex-wrap">
+        {partyEvents.map((partyEvent) => (
+          <EventCard key={partyEvent.firebaseKey} eventObj={partyEvent} onUpdate={setPartyEvents} />
+        ))}
+      </div>
     </div>
   );
 }

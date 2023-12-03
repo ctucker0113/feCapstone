@@ -6,24 +6,26 @@ import Form from 'react-bootstrap/Form';
 import { Button } from 'react-bootstrap';
 import { useAuth } from '../../utils/context/authContext';
 import { updateEvent, createEvent } from '../../api/EventAPICalls';
+import { getUserParties } from '../../api/PartyAPICalls';
 
 const initialState = {
   name: '',
   eventType: '',
   image: '',
   description: '',
-  uid: '',
 };
 
 function EventForm({ eventObj }) {
-  console.warn(`The value of eventObj is: ${eventObj}`);
   const [formInput, setFormInput] = useState(initialState);
+  const [parties, setParties] = useState([]);
 
   const router = useRouter();
 
   const { user } = useAuth();
 
   useEffect(() => {
+    // Fetches all of the parties associated with the user to fill in as options in the Party dropdown.
+    getUserParties(user.uid).then(setParties);
     // If the object already exists (i.e. - has a FB key), then fill the form with the values from the object.
     // Else, leave the values in the form blank.
     if (eventObj.firebaseKey) setFormInput(eventObj);
@@ -112,6 +114,30 @@ function EventForm({ eventObj }) {
         />
       </FloatingLabel>
 
+      {/* PARTY SELECT  */}
+      <FloatingLabel controlId="floatingSelect" label="Party">
+        <Form.Select
+          aria-label="Party"
+          name="partyID"
+          onChange={handleChange}
+          className="mb-3"
+          value={formInput.partyID}
+          // required
+        >
+          <option value="">Add to Which Party?</option>
+          {
+            parties.map((party) => (
+              <option
+                key={party.firebaseKey}
+                value={party.firebaseKey}
+              >
+                {party.party_title}
+              </option>
+            ))
+          }
+        </Form.Select>
+      </FloatingLabel>
+
       {/* SUBMIT BUTTON  */}
       <Button type="submit">{eventObj.firebaseKey ? 'Update' : 'Create'} Event </Button>
     </Form>
@@ -126,6 +152,7 @@ EventForm.propTypes = {
     description: PropTypes.string,
     creatorID: PropTypes.string,
     firebaseKey: PropTypes.string,
+    partyID: PropTypes.string,
   }),
 };
 
