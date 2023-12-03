@@ -53,7 +53,7 @@ function PartyForm({ partyObj }) {
       createParty(payload).then(({ name }) => {
         const patchPayload = { firebaseKey: name };
         updateParty(patchPayload).then(() => {
-          router.push('/parties');
+          router.push('/parties/myParties');
         });
       });
     }

@@ -5,8 +5,7 @@
         "party_title": "Milly's 4th Birthday Party",
         "date": "11/23/2022",
         "time": "10:00 AM",
-        "location": "The Municipal Center",
-        "events": []
+        "location": "The Municipal Center"
     },
     "-NjjQ_tkNP6CwQ_xQ9ZC": {
         "firebaseKey": "-NjjQ_tkNP6CwQ_xQ9ZC",
@@ -14,11 +13,7 @@
         "party_title": "Gwen's 2nd Birthday Party",
         "date": "5/1/2023",
         "time": "8:00 AM",
-        "location": "Presbyterian Church",
-        "events": [
-            {},
-            {}
-        ]
+        "location": "Presbyterian Church"
     },
     "-NjjQ_tlv94wIcbtRWLa": {
         "firebaseKey":"-NjjQ_tlv94wIcbtRWLa",
@@ -26,10 +21,7 @@
         "party_title": "Mason's 8th Birthday Party",
         "date": "11/14/2023",
         "time": "11:00 AM",
-        "location": "The Mall",
-        "events": [
-            {}
-        ]
+        "location": "The Mall"
     },
     "-NjjQ_tmy0i6c7qg2bSo": {
         "firebaseKey": "-NjjQ_tmy0i6c7qg2bSo",
@@ -37,14 +29,7 @@
         "party_title": "Braxton's 4th Birthday Party",
         "date": "7/20/2023",
         "time": "10:00 AM",
-        "location": "The Park",
-        "events": [
-            {},
-            {},
-            {},
-            {},
-            {}
-        ]
+        "location": "The Park"
     },
     "-NjjQ_tn9yWkcyBfaX5q": {
         "firebaseKey": "-NjjQ_tn9yWkcyBfaX5q",
@@ -52,9 +37,6 @@
         "party_title": "Gary's Birthday Party",
         "date": "11/28/2022",
         "time": "1:00 PM",
-        "location": "The Municipal Center",
-        "events": [
-            {}
-        ]
+        "location": "The Municipal Center"
     }
 }

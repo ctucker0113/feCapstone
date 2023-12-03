@@ -28,6 +28,9 @@ function EventCard({ eventObj, onUpdate }) {
         <Button variant="danger" onClick={deleteThisEvent} className="m-2">
           Delete
         </Button>
+        <Link href="/" passHref>
+          <Button variant="info">Add Event to Party</Button>
+        </Link>
       </Card.Body>
     </Card>
   );

@@ -68,10 +68,32 @@ const getSingleEvent = (firebaseKey) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
+const getPartyEvents = (partyID) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/Events.json?orderBy="partyID"&equalTo="${partyID}"`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data) {
+        // Convert the object of events to an array
+        const eventsArray = Object.values(data);
+        resolve(eventsArray);
+      } else {
+        // If no data is found, resolve with an empty array
+        resolve([]);
+      }
+    })
+    .catch(reject);
+});
+
 export {
   getAllEvents,
   deleteEvent,
   updateEvent,
   createEvent,
   getSingleEvent,
+  getPartyEvents,
 };
