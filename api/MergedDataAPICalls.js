@@ -1,20 +1,14 @@
-// import { clientCredentials } from '../utils/client';
+import { getPartyEvents, deleteEvent } from './EventAPICalls';
+import { deleteParty } from './PartyAPICalls';
 
-// const endpoint = clientCredentials.databaseURL;
+const deletePartyEventsRelationship = (firebaseKey) => new Promise((resolve, reject) => {
+  getPartyEvents(firebaseKey).then((partyEventsArray) => {
+    const deletePartyPromises = partyEventsArray.map((event) => deleteEvent(event.firebaseKey));
 
-// const addEventToParty = (eventID, partyID) => new Promise((resolve, reject) => {
-//   fetch(`${endpoint}/Events/${eventID}`, {
-//     method: 'PATCH',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify(eventID),
-//   })
-//     .then((response) => response.json())
-//     .then((data) => resolve(data))
-//     .catch(reject);
-// });
+    Promise.all(deletePartyPromises).then(() => {
+      deleteParty(firebaseKey).then(resolve);
+    });
+  }).catch(reject);
+});
 
-// export {
-//   addEventToParty,
-// };
+export default deletePartyEventsRelationship;

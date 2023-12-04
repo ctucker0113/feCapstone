@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Link from 'next/link';
-import { deleteParty } from '../../api/PartyAPICalls';
+import deletePartyEventsRelationship from '../../api/MergedDataAPICalls';
 
 // This function creates the template for each Party card and sends it out to the rest of the program.
 function PartyCard({ partyObj, onUpdate }) {
   const deleteThisParty = () => {
-    if (window.confirm(`Delete ${partyObj.party_title}?`)) {
-      deleteParty(partyObj.firebaseKey).then(() => onUpdate());
+    if (window.confirm(`Delete ${partyObj.party_title} and its associated events?`)) {
+      deletePartyEventsRelationship(partyObj.firebaseKey).then(() => onUpdate());
     }
   };
 
