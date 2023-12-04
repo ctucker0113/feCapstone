@@ -19,18 +19,12 @@ function EventCard({ eventObj, onUpdate }) {
       <Card.Body>
         <Card.Title>{eventObj.name}</Card.Title>
         <p className="card-text bold"><span>{eventObj.description} <br /></span></p>
-        <Link href="/" passHref>
-          <Button variant="info">View Details</Button>
-        </Link>
         <Link href={`/events/edit/${eventObj.firebaseKey}`} passHref>
-          <Button variant="info">Edit</Button>
+          <Button variant="info">Edit Event</Button>
         </Link>
         <Button variant="danger" onClick={deleteThisEvent} className="m-2">
           Delete
         </Button>
-        <Link href="/" passHref>
-          <Button variant="info">Add Event to Party</Button>
-        </Link>
       </Card.Body>
     </Card>
   );

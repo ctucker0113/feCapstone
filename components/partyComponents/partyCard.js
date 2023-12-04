@@ -22,13 +22,13 @@ function PartyCard({ partyObj, onUpdate }) {
         <p className="card-text bold"><span>{partyObj.time} <br /></span></p>
         <p className="card-text bold"><span>{partyObj.location} <br /></span></p>
         <Link href={`/parties/${partyObj.firebaseKey}`} passHref>
-          <Button variant="info">View</Button>
+          <Button variant="info">View Party Events</Button>
         </Link>
         <Link href={`/parties/edit/${partyObj.firebaseKey}`} passHref>
-          <Button variant="info">Edit</Button>
+          <Button variant="info">Edit Party Details</Button>
         </Link>
         <Button variant="danger" onClick={deleteThisParty} className="m-2">
-          Delete
+          Delete Party
         </Button>
       </Card.Body>
     </Card>
