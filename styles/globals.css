@@ -18,5 +18,19 @@ a {
 }
 
 body {
-  background-color: #88effd;
+  background-color: #72bfed;
+}
+
+#partyConfirmationBtn{
+  width: 390px;
+  height: 90px;
+  font-weight: 550;
+  font-size: 25px;
+  background-color: #30598a;
+  color: whitesmoke;
+  margin-bottom: 20px;
+}
+
+#partyConfirmationBanner{
+  background-color: #F1B873;
 }
