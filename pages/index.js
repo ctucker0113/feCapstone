@@ -26,6 +26,7 @@ function Home() {
           width: '100%',
           height: '50%',
           marginTop: '20px',
+          borderRadius: '15%',
         }}
       />
     </div>

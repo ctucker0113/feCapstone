@@ -21,6 +21,12 @@ body {
   background-color: #72bfed;
 }
 
+#loginBtn{
+  background-color: #E27A37;
+  color: #E4DCBD;
+  margin-top: 50px;
+}
+
 #partyConfirmationBtn{
   width: 390px;
   height: 90px;
