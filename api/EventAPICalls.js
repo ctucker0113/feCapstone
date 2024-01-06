@@ -68,8 +68,8 @@ const getSingleEvent = (firebaseKey) => new Promise((resolve, reject) => {
     .catch(reject);
 });
 
-const getPartyEvents = (partyID) => new Promise((resolve, reject) => {
-  fetch(`${endpoint}/Events.json?orderBy="partyID"&equalTo="${partyID}"`, {
+const getSinglePartyEvents = (partyID) => new Promise((resolve, reject) => {
+  fetch(`${endpoint}/PartyEvents.json?orderBy="partyID"&equalTo="${partyID}"`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -95,5 +95,5 @@ export {
   updateEvent,
   createEvent,
   getSingleEvent,
-  getPartyEvents,
+  getSinglePartyEvents,
 };

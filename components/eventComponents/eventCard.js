@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Link from 'next/link';
-import { deleteEvent } from '../../api/EventAPICalls';
+import { deleteEventsPartyRelationship } from '../../api/MergedDataAPICalls';
 
 // This function creates the template for each Event card and sends it out to the rest of the program.
 function EventCard({ eventObj, onUpdate }) {
   const deleteThisEvent = () => {
     if (window.confirm(`Delete ${eventObj.name}?`)) {
-      deleteEvent(eventObj.firebaseKey).then(() => onUpdate());
+      deleteEventsPartyRelationship(eventObj.firebaseKey).then(() => onUpdate());
     }
   };
 
@@ -19,6 +19,9 @@ function EventCard({ eventObj, onUpdate }) {
       <Card.Body>
         <Card.Title>{eventObj.name}</Card.Title>
         <p className="card-text bold"><span>{eventObj.description} <br /></span></p>
+        <Link href={`/events/addEventToParty/${eventObj.firebaseKey}`} passHref>
+          <Button variant="info">Add Event To Party</Button>
+        </Link>
         <Link href={`/events/edit/${eventObj.firebaseKey}`} passHref>
           <Button variant="info">Edit Event</Button>
         </Link>
