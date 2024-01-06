@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { getPartyEvents } from '../../api/EventAPICalls';
-import EventCard from '../../components/eventComponents/eventCard';
+import PartyEventCard from '../../components/eventComponents/partyEventCard';
+import { fetchPartyEventsDataFromFirebase } from '../../api/MergedDataAPICalls';
 
 export default function ViewPartyEvents() {
   const [partyEvents, setPartyEvents] = useState([]);
@@ -10,8 +10,8 @@ export default function ViewPartyEvents() {
   const { firebaseKey } = router.query;
 
   const getThisPartyEvents = (partyID) => {
-    getPartyEvents(partyID).then((events) => {
-      console.warn('Received party events:', events);
+    fetchPartyEventsDataFromFirebase(partyID).then(({ events }) => {
+      console.warn(events);
       // Make sure events is an array before setting it
       if (Array.isArray(events)) {
         setPartyEvents(events);
@@ -22,14 +22,16 @@ export default function ViewPartyEvents() {
   };
 
   useEffect(() => {
-    getThisPartyEvents(firebaseKey);
+    if (firebaseKey) {
+      getThisPartyEvents(firebaseKey);
+    }
   }, [firebaseKey]);
 
   return (
     <div>
       <div className="d-flex flex-wrap">
         {partyEvents.map((partyEvent) => (
-          <EventCard key={partyEvent.firebaseKey} eventObj={partyEvent} onUpdate={setPartyEvents} />
+          <PartyEventCard key={partyEvent.firebaseKey} eventObj={partyEvent} onUpdate={setPartyEvents} refreshEvents={() => getThisPartyEvents(firebaseKey)} />
         ))}
       </div>
     </div>
